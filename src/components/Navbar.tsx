@@ -1,0 +1,120 @@
+
+import React, { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
+import { Activity, Menu, X } from 'lucide-react';
+
+export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '#' },
+    { name: 'Workouts', href: '#features' },
+    { name: 'Nutrition', href: '#features' },
+    { name: 'Meditation', href: '#features' },
+    { name: 'Community', href: '#community' },
+  ];
+
+  return (
+    <nav 
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 lg:px-10',
+        scrolled ? 'py-3 bg-white/80 backdrop-blur-md shadow-sm' : 'py-5 bg-transparent'
+      )}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo */}
+        <a 
+          href="#" 
+          className="flex items-center space-x-2 text-wellness-600 font-semibold text-xl"
+        >
+          <Activity className="h-6 w-6 animate-pulse-soft" />
+          <span>KeepMeFit</span>
+        </a>
+
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex space-x-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-gray-700 hover:text-wellness-600 hover-underline font-medium"
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="hidden md:flex items-center space-x-4">
+          <a 
+            href="#" 
+            className="text-wellness-600 font-medium hover:text-wellness-700"
+          >
+            Sign In
+          </a>
+          <a 
+            href="#" 
+            className="bg-wellness-500 hover:bg-wellness-600 text-white py-2 px-4 rounded-full font-medium transition-all shadow-sm hover:shadow"
+          >
+            Get Started
+          </a>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="md:hidden text-gray-700 hover:text-wellness-600"
+        >
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div 
+        className={cn(
+          "absolute top-full left-0 right-0 bg-white shadow-lg md:hidden transition-all duration-300 overflow-hidden",
+          isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <div className="px-6 py-4 space-y-3 flex flex-col">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-gray-700 hover:text-wellness-600 py-2 font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              {link.name}
+            </a>
+          ))}
+          <div className="pt-4 flex flex-col space-y-3">
+            <a 
+              href="#" 
+              className="text-wellness-600 font-medium hover:text-wellness-700 py-2"
+            >
+              Sign In
+            </a>
+            <a 
+              href="#" 
+              className="bg-wellness-500 hover:bg-wellness-600 text-white py-3 px-4 rounded-lg font-medium text-center"
+            >
+              Get Started
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
