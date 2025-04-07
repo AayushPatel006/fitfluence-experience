@@ -1,10 +1,10 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Activity, Calendar, Heart, Timer, TrendingUp, Zap } from 'lucide-react';
 
 const Dashboard = () => {
-  // Fake user data
-  const userData = {
+  const [isDeviceConnected, setIsDeviceConnected] = useState(false);
+  const [deviceData, setDeviceData] = useState<{ name: string; steps: number; heartRate: number; calories: number; mindfulMinutes: number } | null>(null);
+  const [userData, setUserData] = useState({
     name: 'Aayush',
     streakDays: 7,
     completedWorkouts: 24,
@@ -13,6 +13,33 @@ const Dashboard = () => {
     progress: 68,
     nextSession: '10:00 AM',
     todayDate: new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+  });
+
+  const connectWearableDevice = () => {
+    alert('Connecting to your wearable device...');
+    setTimeout(() => {
+      const newDeviceData = {
+        name: 'FitBand Pro X',
+        steps: 10234,
+        heartRate: 72,
+        calories: 300,
+        mindfulMinutes: 15,
+      };
+      setIsDeviceConnected(true);
+      setDeviceData(newDeviceData);
+
+      // Simulate updating user data with a transition
+      setTimeout(() => {
+        setUserData((prevData) => ({
+          ...prevData,
+          caloriesBurned: prevData.caloriesBurned + newDeviceData.calories,
+          mindfulMinutes: prevData.mindfulMinutes + newDeviceData.mindfulMinutes,
+          progress: Math.min(prevData.progress + 5, 100), // Increment progress by 5% (capped at 100%)
+        }));
+      }, 1000);
+
+      alert('Device connected successfully!');
+    }, 2000);
   };
 
   return (
@@ -67,7 +94,9 @@ const Dashboard = () => {
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-gray-500 text-sm">Calories Burned</p>
-                    <p className="text-2xl font-semibold mt-1">{userData.caloriesBurned}</p>
+                    <p className="text-2xl font-semibold mt-1 transition-all duration-500">
+                      {userData.caloriesBurned}
+                    </p>
                   </div>
                   <div className="bg-orange-100 p-2 rounded-lg">
                     <Zap className="h-5 w-5 text-orange-600" />
@@ -84,7 +113,9 @@ const Dashboard = () => {
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-gray-500 text-sm">Mindful Minutes</p>
-                    <p className="text-2xl font-semibold mt-1">{userData.mindfulMinutes}</p>
+                    <p className="text-2xl font-semibold mt-1 transition-all duration-500">
+                      {userData.mindfulMinutes}
+                    </p>
                   </div>
                   <div className="bg-purple-100 p-2 rounded-lg">
                     <Heart className="h-5 w-5 text-purple-600" />
@@ -156,6 +187,32 @@ const Dashboard = () => {
                   </a>
                 </div>
               </div>
+            </div>
+
+            {/* Connect Wearable Device Section */}
+            <div className="mt-8">
+              <h2 className="text-2xl font-bold mb-4">Connect Your Wearable Device</h2>
+              {!isDeviceConnected ? (
+                <button
+                  onClick={connectWearableDevice}
+                  className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition"
+                >
+                  Connect Device
+                </button>
+              ) : (
+                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                  <h4 className="text-lg font-medium mb-4">Device Details</h4>
+                  <p className="text-gray-600 mb-2">
+                    <strong>Device Name:</strong> {deviceData?.name}
+                  </p>
+                  <p className="text-gray-600 mb-2">
+                    <strong>Steps Today:</strong> {deviceData?.steps}
+                  </p>
+                  <p className="text-gray-600">
+                    <strong>Current Heart Rate:</strong> {deviceData?.heartRate} bpm
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

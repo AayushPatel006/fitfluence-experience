@@ -41,6 +41,12 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-50">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <button
+          onClick={() => navigate('/')} // Navigate to home on click
+          className="mb-4 text-wellness-600 hover:text-wellness-700 font-medium"
+        >
+          &larr; Back to Home
+        </button>
         <h2 className="text-2xl font-bold text-center text-wellness-600 mb-6">
           Welcome Back
         </h2>

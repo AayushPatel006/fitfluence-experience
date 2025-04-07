@@ -1,10 +1,16 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Play, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const loginStatus = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(loginStatus);
+  }, []);
+
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+    <section id="home" className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[600px] h-[600px] rounded-full bg-wellness-100 blur-3xl opacity-60"></div>
@@ -30,12 +36,14 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start animate-fade-in opacity-0" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
-              <a 
-                href="#dashboard" 
-                className="wellness-gradient text-white font-medium rounded-full px-8 py-3.5 shadow-lg hover:shadow-xl hover:scale-105 transition-all w-full sm:w-auto text-center"
-              >
-                Start Your Journey
-              </a>
+              {!isLoggedIn && (
+                <a 
+                  href="/signup" 
+                  className="wellness-gradient text-white font-medium rounded-full px-8 py-3.5 shadow-lg hover:shadow-xl hover:scale-105 transition-all w-full sm:w-auto text-center"
+                >
+                  Start Your Journey
+                </a>
+              )}
               
               <a 
                 href="#" 
@@ -61,6 +69,8 @@ const Hero = () => {
               </div>
               
               {/* Floating elements */}
+              {isLoggedIn &&
+              <>
               <div className="absolute -top-6 -left-6 glass-card rounded-lg shadow-lg p-4 z-20 animate-float">
                 <div className="flex items-center space-x-3">
                   <div className="bg-green-100 p-2 rounded-full">
@@ -88,6 +98,8 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
+              </>
+              }
             </div>
           </div>
         </div>

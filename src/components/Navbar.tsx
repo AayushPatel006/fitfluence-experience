@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Activity, Menu, X } from 'lucide-react';
+import { Activity, Menu, Route, X } from 'lucide-react';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,11 +25,12 @@ export const Navbar = () => {
   const handleLogout = () => {
     setIsLoggedIn(false); // Set login status to false
     localStorage.setItem('isLoggedIn', 'false'); // Update localStorage
-    console.log('User logged out');
+    console.log('User logged out');    // Redirect to login page
+    window.location.href = '/'; // Redirect to home page
   };
 
   const navLinks = [
-    { name: 'Home', href: '#' },
+    { name: 'Home', href: '#home' },
     { name: 'Workouts', href: '#features' },
     { name: 'Nutrition', href: '#feature-nutrition' },
     { name: 'Refreshing Sessions', href: '#feature-refreshing-session' },
@@ -86,7 +87,7 @@ export const Navbar = () => {
           )}
           {!isLoggedIn && (
             <a
-              href="#"
+              href="/signup"
               className="bg-wellness-500 hover:bg-wellness-600 text-white py-2 px-4 rounded-full font-medium transition-all shadow-sm hover:shadow"
             >
               Get Started

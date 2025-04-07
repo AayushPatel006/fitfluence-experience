@@ -101,7 +101,7 @@ const FeatureShowcase = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-wellness-600 font-medium text-sm">7:00 PM Today</span>
                       <button
-                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/njX2bu-_Vw4")} // Play video on button click
+                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/U_-7UWZGD4o")} // Play video on button click
                         className="bg-wellness-50 text-wellness-600 p-2 rounded-full hover:bg-wellness-100"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -134,7 +134,7 @@ const FeatureShowcase = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-wellness-600 font-medium text-sm">Watch Anytime</span>
                       <button
-                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/njX2bu-_Vw4")} // Play video on button click
+                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/U_-7UWZGD4o")} // Play video on button click
                         className="bg-wellness-50 text-wellness-600 p-2 rounded-full hover:bg-wellness-100"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -167,7 +167,7 @@ const FeatureShowcase = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-wellness-600 font-medium text-sm">6:00 PM Tomorrow</span>
                       <button
-                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/njX2bu-_Vw4")} // Play video on button click
+                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/U_-7UWZGD4o")} // Play video on button click
                         className="bg-wellness-50 text-wellness-600 p-2 rounded-full hover:bg-wellness-100"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -200,7 +200,7 @@ const FeatureShowcase = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-wellness-600 font-medium text-sm">Watch Anytime</span>
                       <button
-                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/njX2bu-_Vw4")} // Play video on button click
+                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/U_-7UWZGD4o")} // Play video on button click
                         className="bg-wellness-50 text-wellness-600 p-2 rounded-full hover:bg-wellness-100"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -231,7 +231,7 @@ const FeatureShowcase = () => {
                   </li>
                 ))}
               </ul>
-              <a 
+              {/* {/* <a 
                 href="#" 
                 className="wellness-gradient text-white font-medium rounded-full px-6 py-3 inline-flex items-center shadow-md hover:shadow-lg hover:scale-105 transition-all"
               >
@@ -239,7 +239,7 @@ const FeatureShowcase = () => {
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
-              </a>
+              </a> */} 
             </div>
           </div>
         </div>
@@ -264,7 +264,7 @@ const FeatureShowcase = () => {
                   </li>
                 ))}
               </ul>
-              <a 
+              {/* {/* <a 
                 href="#" 
                 className="wellness-gradient text-white font-medium rounded-full px-6 py-3 inline-flex items-center shadow-md hover:shadow-lg hover:scale-105 transition-all"
               >
@@ -272,7 +272,7 @@ const FeatureShowcase = () => {
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
-              </a>
+              </a> */}
             </div>
             
             <div className="w-full md:w-1/2 animate-slide-up opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
@@ -295,7 +295,7 @@ const FeatureShowcase = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-wellness-600 font-medium text-sm">10:00 AM Today</span>
                       <button
-                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/njX2bu-_Vw4")} // Play video on button click
+                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/bSnNQaAr5l8")} // Play video on button click
                         className="bg-wellness-50 text-wellness-600 p-2 rounded-full hover:bg-wellness-100"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -328,7 +328,7 @@ const FeatureShowcase = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-wellness-600 font-medium text-sm">Watch Anytime</span>
                       <button
-                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/njX2bu-_Vw4")} // Play video on button click
+                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/bSnNQaAr5l8")} // Play video on button click
                         className="bg-wellness-50 text-wellness-600 p-2 rounded-full hover:bg-wellness-100"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -361,7 +361,7 @@ const FeatureShowcase = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-wellness-600 font-medium text-sm">5:00 PM Tomorrow</span>
                       <button
-                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/njX2bu-_Vw4")} // Play video on button click
+                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/bSnNQaAr5l8")} // Play video on button click
                         className="bg-wellness-50 text-wellness-600 p-2 rounded-full hover:bg-wellness-100"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -394,7 +394,7 @@ const FeatureShowcase = () => {
                     <div className="flex justify-between items-center">
                       <span className="text-wellness-600 font-medium text-sm">Watch Anytime</span>
                       <button
-                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/njX2bu-_Vw4")} // Play video on button click
+                        onClick={() => handlePlayVideo("https://www.youtube.com/embed/bSnNQaAr5l8")} // Play video on button click
                         className="bg-wellness-50 text-wellness-600 p-2 rounded-full hover:bg-wellness-100"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

@@ -1,19 +1,10 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Trophy, Users, MessageSquare } from 'lucide-react';
 
 const Community = () => {
-  // Fake leaderboard data
-  const leaderboardData = [
-    { rank: 1, name: 'Alex J.', points: 2840, avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
-    { rank: 2, name: 'Sarah M.', points: 2720, avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
-    { rank: 3, name: 'David L.', points: 2615, avatar: 'https://randomuser.me/api/portraits/men/86.jpg' },
-    { rank: 4, name: 'Emily R.', points: 2590, avatar: 'https://randomuser.me/api/portraits/women/17.jpg' },
-    { rank: 5, name: 'Michael T.', points: 2480, avatar: 'https://randomuser.me/api/portraits/men/55.jpg' },
-  ];
-
-  // Fake community posts
-  const communityPosts = [
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [newComment, setNewComment] = useState('');
+  const [communityPosts, setCommunityPosts] = useState([
     {
       id: 1,
       user: 'Jessica K.',
@@ -32,14 +23,64 @@ const Community = () => {
       likes: 17,
       comments: 12,
     },
+    // Add more dummy comments with real names
+    ...[
+      'Emily R.', 'Michael T.', 'Sophia L.', 'James B.', 'Olivia P.', 
+      'Liam W.', 'Emma D.', 'Noah H.', 'Ava C.', 'Isabella F.',
+      'Lucas G.', 'Mia J.', 'Ethan K.', 'Amelia V.', 'Charlotte Z.',
+      'Benjamin Y.', 'Harper Q.', 'Elijah X.', 'Evelyn U.', 'Henry T.'
+    ].map((name, i) => ({
+      id: i + 3,
+      user: name,
+      avatar: `https://randomuser.me/api/portraits/${i % 2 === 0 ? 'men' : 'women'}/${i + 10}.jpg`,
+      time: `${i + 1} hours ago`,
+      content: `This is a dummy comment by ${name}. Loving the community vibes!`,
+      likes: Math.floor(Math.random() * 50),
+      comments: Math.floor(Math.random() * 20),
+    })),
+  ]);
+
+  useEffect(() => {
+    // Check login state from localStorage
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(loggedIn);
+  }, []);
+
+  // Fake leaderboard data
+  const leaderboardData = [
+    { rank: 1, name: 'Alex J.', points: 2840, avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
+    { rank: 2, name: 'Sarah M.', points: 2720, avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
+    { rank: 3, name: 'David L.', points: 2615, avatar: 'https://randomuser.me/api/portraits/men/86.jpg' },
+    { rank: 4, name: 'Emily R.', points: 2590, avatar: 'https://randomuser.me/api/portraits/women/17.jpg' },
+    { rank: 5, name: 'Michael T.', points: 2480, avatar: 'https://randomuser.me/api/portraits/men/55.jpg' },
+    // Conditionally add Aayush P.'s record if the user is logged in
+    ...(isLoggedIn
+      ? [{ rank: 7532, name: 'Aayush P.', points: 34, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlie4MsQ9pJSSKY7DoEpxn3uBAq-rT7in1sA&s' }]
+      : []),
   ];
+
+  const handleAddComment = () => {
+    if (newComment.trim()) {
+      const newPost = {
+        id: communityPosts.length + 1,
+        user: 'You',
+        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlie4MsQ9pJSSKY7DoEpxn3uBAq-rT7in1sA&s',
+        time: 'Just now',
+        content: newComment,
+        likes: 0,
+        comments: 0,
+      };
+      setCommunityPosts([newPost, ...communityPosts]); // Add new comment to the top
+      setNewComment('');
+    }
+  };
 
   return (
     <section id="community" className="py-16 md:py-24 bg-gray-50">
       <div className="container px-4 mx-auto max-w-7xl">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards' }}>
-            Join Our Wellness Community
+            Our Wellness Community
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
             Connect with like-minded individuals, share your journey, celebrate achievements, and motivate each other.
@@ -64,7 +105,7 @@ const Community = () => {
                 {leaderboardData.map((user) => (
                   <div 
                     key={user.rank} 
-                    className={`flex items-center p-3 rounded-lg ${user.rank <= 3 ? 'bg-gradient-to-r from-wellness-50 to-transparent' : ''}`}
+                    className={`flex items-center p-3 rounded-lg ${user.rank >= 100 ? 'bg-red-100' : ''} ${user.rank <= 3 ? 'bg-gradient-to-r from-wellness-50 to-transparent' : ''}`}
                   >
                     <div className="w-8 text-center font-semibold text-gray-500">
                       {user.rank}
@@ -93,7 +134,7 @@ const Community = () => {
                   </div>
                 ))}
               </div>
-
+              
               <div className="mt-6 text-center">
                 <a 
                   href="#" 
@@ -111,7 +152,7 @@ const Community = () => {
           {/* Community Feed */}
           <div className="flex flex-col animate-slide-up opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
             <div className="glass-card rounded-xl overflow-hidden border border-gray-100 shadow-lg mb-6 flex-1">
-              <div className="p-6">
+              <div className="p-6" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
                     <Users className="h-5 w-5 text-wellness-600 mr-2" />
@@ -121,6 +162,24 @@ const Community = () => {
                     <MessageSquare className="h-5 w-5" />
                   </button>
                 </div>
+
+                {/* Add Comment Input */}
+                {isLoggedIn && (
+                  <div className="mb-6">
+                    <textarea
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      placeholder="Write a comment..."
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-wellness-600"
+                    />
+                    <button
+                      onClick={handleAddComment}
+                      className="mt-2 px-4 py-2 bg-wellness-600 text-white rounded-lg hover:bg-wellness-700"
+                    >
+                      Add Comment
+                    </button>
+                  </div>
+                )}
 
                 {/* Posts */}
                 <div className="space-y-6">
@@ -193,8 +252,9 @@ const Community = () => {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <a 
-            href="#" 
+        {!isLoggedIn && (
+            <a 
+            href="/signup" 
             className="wellness-gradient text-white font-medium rounded-full px-8 py-3.5 shadow-lg hover:shadow-xl hover:scale-105 transition-all inline-flex items-center"
           >
             Join Our Community Today
@@ -202,6 +262,7 @@ const Community = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>
+          )}
         </div>
       </div>
     </section>
