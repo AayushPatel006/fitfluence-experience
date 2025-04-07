@@ -41,8 +41,8 @@ const Hero = () => {
                 href="#" 
                 className="flex items-center justify-center space-x-2 text-wellness-700 hover:text-wellness-800 w-full sm:w-auto"
               >
-                <div className="flex items-center justify-center bg-wellness-50 p-2 rounded-full">
-                  <Play className="h-4 w-4" />
+                <div className="flex items-center justify-center bg-blue-50 p-2 rounded-full">
+                  <Play className="h-4 w-4 bg-blue-50" />
                 </div>
                 <span className="font-medium">Watch How It Works</span>
               </a>

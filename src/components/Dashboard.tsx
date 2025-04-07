@@ -5,7 +5,7 @@ import { Activity, Calendar, Heart, Timer, TrendingUp, Zap } from 'lucide-react'
 const Dashboard = () => {
   // Fake user data
   const userData = {
-    name: 'Sarah',
+    name: 'Aayush',
     streakDays: 7,
     completedWorkouts: 24,
     caloriesBurned: 1240,
