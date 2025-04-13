@@ -46,7 +46,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        <Hero id="home"/>
+        <Hero />
         {isLoggedIn && <Dashboard />} {/* Render Dashboard only if logged in */}
         <FeatureShowcase />
         <Community />

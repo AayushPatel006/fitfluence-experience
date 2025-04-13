@@ -216,14 +216,14 @@ const FeatureShowcase = () => {
                 </div>
               </div>
             </div>
-            <div className="text-right w-full md:w-1/2 mb-8 md:mb-0 md:pr-8 animate-slide-up opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
+            <div className="text-left m-20 w-full md:w-1/2 mb-8 md:mb-0 md:pr-8 animate-slide-up opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
               <h3 className="text-2xl md:text-3xl font-bold mb-4">Eat Healthy, Stay Fit</h3>
               <p className="text-gray-600 mb-6">
                 Access hundreds of expert-led live kitchen classes for healthy and nutritious life. Join live classes or practice on your own schedule.
               </p>
-              <ul className="space-y-3 mb-6 text-right">
+              <ul className="space-y-3 mb-6 text-left">
                 {['Personalized recipies', 'Ingingredients List', 'Healthy Nutritious Meal', 'Progress tracking'].map((item, i) => (
-                  <li key={i} className="flex items-right justify-end">
+                  <li key={i} className="flex items-left">
                     <span>{item}</span>
                     <svg className="w-5 h-5 text-wellness-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

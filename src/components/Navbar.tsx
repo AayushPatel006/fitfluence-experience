@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Activity, Menu, Route, X } from 'lucide-react';
+import { Activity, Menu, Route, X, ChevronDown } from 'lucide-react'; // Import ChevronDown icon
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [showProfileMenu, setShowProfileMenu] = useState(false); // Track profile menu visibility
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,12 +71,36 @@ export const Navbar = () => {
         {/* Action Buttons */}
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (
-            <button
-              onClick={handleLogout}
-              className="text-wellness-600 font-medium hover:text-wellness-700"
-            >
-              Logout
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => setShowProfileMenu(!showProfileMenu)}
+                className="flex items-center text-wellness-600 font-medium hover:text-wellness-700"
+              >
+                Profile <ChevronDown className="ml-1 h-4 w-4" />
+              </button>
+              {showProfileMenu && (
+                <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2">
+                  <a
+                    href="/profile"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    View Profile
+                  </a>
+                  <a
+                    href="/settings"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    Settings
+                  </a>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <a
               href="/login"
