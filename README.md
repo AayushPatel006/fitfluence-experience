@@ -1,6 +1,6 @@
 ---
 
-# 🏋️‍♂️ Fitfluence – Your Personalized Fitness Companion
+# 🏋️‍♂️ KeepMeFit – Your Personalized Fitness Companion
 
 [Live Demo 🚀](https://keep-me-fit.vercel.app/)
 
