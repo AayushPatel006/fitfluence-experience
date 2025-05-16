@@ -65,7 +65,7 @@ Seamless experience on desktop, tablet, and mobile devices.
 
 ### Prerequisites
 
-- FastAPI
+- Node.js (v14+)
 - npm or yarn
 
 
